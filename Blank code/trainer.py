@@ -3,15 +3,17 @@ import pandas as pd
 import tensorflow as tf
 from tensorflow.keras.constraints import max_norm
 from tensorflow.keras import layers
+from tensorflow.keras.layers.experimental import preprocessing
+import tensorboard
 import keras
 from sklearn.model_selection import train_test_split
-from tensorflow.keras.layers.experimental import preprocessing
-from datetime import datetime
-import tensorboard
-import pyreadstat
 from sklearn.utils import resample
+from datetime import datetime
+import pyreadstat
 
-#TODO setup is run in setup.py
+
+#IF YOUR PYTHON ENVIRONMENT IS NOT SET-UP YET, YOU COULD TAKE A LOOK AT setup.py
+
 
 # to see if your computer can utilize its GPU to speed everything up, let's take a look at how many GPUs are available
 # if you installed tensorflow-gpu and all necessary CUDA toolkits and drivers it should be at least one
@@ -22,7 +24,9 @@ from sklearn.utils import resample
 print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
 
-#TODO data is imported from dataReader.py
+data_file = 'C:/Users/Lukas.Deis/Documents/dataset/MIND_Set_Data_exported.csv'
+# convert to csv
+dataframe = pd.read_csv(data_file)
 
 target = "OQ_8"
 string_targets = dataframe[target]
@@ -56,7 +60,7 @@ tf.print("targets:", dataframe['target'])
 # The dataset returns a dictionary of column names (from the dataframe) that map to column values from rows in the dataframe.
 
 #TODO the data is preprocessed in prepprocessingModel.py
-#TODO: fOR many numeric features (hundreds, or more) it would be more efficient to concatenate them first and use a single normalization layer.
+#TODO: for many numeric features (hundreds, or more) it would be more efficient to concatenate them first and use a single normalization layer.
 
 
 # The first step towards a working model
