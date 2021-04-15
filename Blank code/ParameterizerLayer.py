@@ -1,6 +1,7 @@
 import tensorflow as tf
 from tensorflow.keras import layers
 
+
 class ParameterizerLayer(layers.Layer):
 
     def __init__(self, out_shape, dropout_rate):
