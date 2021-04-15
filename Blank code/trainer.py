@@ -5,6 +5,7 @@ from datetime import datetime
 from DataSorter import DataSorter
 from DataPrepper import DataPrepper
 from PrepprocessingModel import Preprocessor
+from SENN import SENN
 
 
 #IF YOUR PYTHON ENVIRONMENT IS NOT SET-UP YET, YOU COULD TAKE A LOOK AT setup.py
@@ -70,9 +71,9 @@ preprocesessing_model = preprocessor.get_model(
     batch_size=1  # TODO needs to be 1 rn (buggy!) but should be changeable from interface
 )
 
-
-
-#TODO the SENN model is stored in senn.py
+senn = SENN()
+functional_model = senn.functional_model
+functional_model.summary()
 
 # do pre-processing of data separately
 processed_train_ds = train_ds.map(
@@ -87,15 +88,16 @@ for d in processed_train_ds.enumerate():
     tf.print(d)
 
 
-
-# Define the Keras TensorBoard callback, used for the animated, interactive tensorboard visualizatioon
+# Define the Keras TensorBoard callback, used for the animated, interactive tensorboard visualization
 logdir="logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir)
 
-#This should plot the exhaustive graph, but is a bit unreliable
+
+# This should plot the exhaustive graph, but is a bit unreliable
 tf.keras.utils.plot_model(functional_model, show_shapes=True, rankdir="LR")
 
-#tf.print("processed_train_ds shape:", processed_train_ds.take(0))
+
+# tf.print("processed_train_ds shape:", processed_train_ds.take(0))
 functional_model.fit(processed_train_ds, epochs=5, callbacks=tensorboard_callback)
 
 #TODO testing is done in tester.py
@@ -105,12 +107,12 @@ functional_model.save('suicidal_ideation_model')
 reloaded_preprocessing = tf.keras.models.load_model('preprocessing_model')
 reloaded_model = tf.keras.models.load_model('suicidal_ideation_model')
 
-#TODO analysis is done in analyzer.py
+# TODO analysis is done in analyzer.py
 
 
 # storing everything for later
 
-#location
+# location
 directory = "./saves/medium_high_risk"
 
 # models:

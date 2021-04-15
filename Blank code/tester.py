@@ -1,5 +1,13 @@
 import tensorflow as tf
-
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from sklearn.metrics import (
+    average_precision_score,
+    precision_recall_curve,
+    roc_auc_score,
+    roc_curve,
+)
 
 # do pre-processing of data separately
 processed_test_ds = test_ds.map(
@@ -20,18 +28,6 @@ y_true = []
 for x_var, y_var in processed_test_ds:
     x.append(x_var)
     y_true.append(y_var[0])
-
-
-##imports
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-from sklearn.metrics import (
-    average_precision_score,
-    precision_recall_curve,
-    roc_auc_score,
-    roc_curve,
-)
 
 
 ## basic metrics
