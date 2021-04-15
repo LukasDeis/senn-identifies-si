@@ -82,7 +82,6 @@ class SENN:
 
         return custom_loss
 
-
-    def zero_loss(y_true, y_pred):
+    def zero_loss(self, y_true, y_pred):
         return 0
 
