@@ -12,6 +12,7 @@ from datetime import datetime
 import pyreadstat
 from DataSorter import DataSorter
 from DataPrepper import DataPrepper
+from PrepprocessingModel import Preprocessor
 
 
 #IF YOUR PYTHON ENVIRONMENT IS NOT SET-UP YET, YOU COULD TAKE A LOOK AT setup.py
@@ -60,21 +61,24 @@ dataframe.head()
 dataSorter = DataSorter()
 dataframe = dataSorter.sort(dataframe, target)
 
-dataPrepper = DataPrepper()
-train_ds = dataPrepper.df_to_dataset(dataframe)
+data_prepper = DataPrepper()
+train_ds = data_prepper.df_to_dataset(dataframe)
 # The dataset returns a dictionary of column names (from the dataframe) that map to column values from rows in the dataframe.
 
-#TODO the data is preprocessed in prepprocessingModel.py
-#TODO: for many numeric features (hundreds, or more) it would be more efficient to concatenate them first and use a single normalization layer.
+preprocessor = Preprocessor()
+preprocesessing_model = preprocessor.get_model(
+    data_prepper,
+    train,
+    val,
+    test,
+    numerical_features,
+    categorical_int_features,
+    categorical_cols,
+    target,
+    batch_size=1  # TODO needs to be 1 rn (buggy!) but should be changeable from interface
+)
 
 
-# The first step towards a working model
-# is our preprocessed input.
-# As that is a relative complex task, that is regarded it's owy model.
-
-preprocessed_layers = layers.Concatenate()(encoded_features) #encoded_features
-preprocesessing_model = tf.keras.Model(all_inputs, preprocessed_layers)
-preprocesessing_model.summary()
 
 #TODO the SENN model is stored in senn.py
 

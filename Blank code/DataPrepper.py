@@ -5,8 +5,6 @@ from sklearn.utils import resample
 
 
 class DataPrepper:
-    def __init__(self):
-        print("dataPrepper!")
 
     # A utility method to create a tf.data dataset from a Pandas Dataframe
     def df_to_dataset(self, dataframe, shuffle=True, batch_size=1):

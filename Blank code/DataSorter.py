@@ -7,7 +7,7 @@ class DataSorter:
     def __init__(self):
         self.headers_loc = 'C:/Users/Lukas.Deis/Documents/dataset/headers.csv'
         
-    def sort(self, dataframe, target_heading):
+    def sort(self, dataframe, target):
         # To preprocess the input into usable data, we need to know which column contains what kind of data.
         # Data can either be:
         #     - a scalar value (a fee one has to pay)
@@ -43,7 +43,7 @@ class DataSorter:
         for row in headers.itertuples(): 
             heading, col_type = row.heading, row.type
             # the target variable, should not be sorted as it is removed from the dataset earlier.
-            if heading == target_heading:
+            if heading == target:
                 print(row)
                 pass
             right_column_list = type_sorting.get(col_type, lambda: tf.print("invalid type:", col_type, " for column:",
