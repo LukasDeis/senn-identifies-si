@@ -1,3 +1,8 @@
+import tensorflow as tf
+from tensorflow.keras import layers
+import keras
+
+
 # A combination of layers, common in the parameterizer
 
 class ParameterizerLayer(layers.Layer):

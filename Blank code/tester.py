@@ -1,3 +1,5 @@
+import tensorflow as tf
+
 
 # do pre-processing of data separately
 processed_test_ds = test_ds.map(
