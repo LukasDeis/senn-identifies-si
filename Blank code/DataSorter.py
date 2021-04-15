@@ -101,4 +101,4 @@ class DataSorter:
     
         # remove cells that should not be considered (generalizable (long texts) or do not carry value (ID's))
         dataframe = dataframe.drop(columns=to_be_removed)
-        return dataframe
+        return dataframe, numerical_features, categorical_int_features, categorical_cols

@@ -59,4 +59,4 @@ class DataPrepper:
         print('Every feature:', list(train_features.keys()), "\n")
         print('A batch of PTSDFinal:', train_features['PTSDFinal'], "\n")
         print('A batch of targets:', label_batch)
-        return train_ds
+        return train_ds, train, val, test

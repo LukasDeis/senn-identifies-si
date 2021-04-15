@@ -59,10 +59,10 @@ tf.print("targets:", dataframe['target'])
 
 dataframe.head()
 dataSorter = DataSorter()
-dataframe = dataSorter.sort(dataframe, target)
+dataframe, numerical_features, categorical_int_features, categorical_cols = dataSorter.sort(dataframe, target)
 
 data_prepper = DataPrepper()
-train_ds = data_prepper.df_to_dataset(dataframe)
+train_ds, train, val, test = data_prepper.df_to_dataset(dataframe)
 # The dataset returns a dictionary of column names (from the dataframe) that map to column values from rows in the dataframe.
 
 preprocessor = Preprocessor()
