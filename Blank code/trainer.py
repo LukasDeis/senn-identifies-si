@@ -10,6 +10,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.utils import resample
 from datetime import datetime
 import pyreadstat
+from DataSorter import DataSorter
 
 
 #IF YOUR PYTHON ENVIRONMENT IS NOT SET-UP YET, YOU COULD TAKE A LOOK AT setup.py
@@ -54,7 +55,9 @@ dataframe = dataframe[dataframe['target'].notna()]
 tf.print("targets:", dataframe['target'])
 #TODO note this in the report
 
-#TODO data is sorted in dataSorter.py
+dataframe.head()
+dataSorter = DataSorter()
+dataframe = dataSorter.sort(dataframe, target)
 
 #TODO data is split and balanced in dataPrepper.py
 # The dataset returns a dictionary of column names (from the dataframe) that map to column values from rows in the dataframe.
