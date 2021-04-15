@@ -11,6 +11,7 @@ from sklearn.utils import resample
 from datetime import datetime
 import pyreadstat
 from DataSorter import DataSorter
+from DataPrepper import DataPrepper
 
 
 #IF YOUR PYTHON ENVIRONMENT IS NOT SET-UP YET, YOU COULD TAKE A LOOK AT setup.py
@@ -59,7 +60,8 @@ dataframe.head()
 dataSorter = DataSorter()
 dataframe = dataSorter.sort(dataframe, target)
 
-#TODO data is split and balanced in dataPrepper.py
+dataPrepper = DataPrepper()
+train_ds = dataPrepper.df_to_dataset(dataframe)
 # The dataset returns a dictionary of column names (from the dataframe) that map to column values from rows in the dataframe.
 
 #TODO the data is preprocessed in prepprocessingModel.py
